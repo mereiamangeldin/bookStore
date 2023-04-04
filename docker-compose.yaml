@@ -1,0 +1,37 @@
+version: '3.4'
+
+services:
+  go_backend:
+    build:
+      context: .
+    environment:
+      DB_HOST: localhost
+      DB_PORT: "5432"
+      DB_USER: ${POSTGRES_USER}
+      DB_PASSWORD: ${POSTGRES_PASSWORD}
+      DB_NAME: ${POSTGRES_DB}
+    networks:
+      - mynet
+    ports:
+      - 8000:8000
+
+  postgresql:
+    image: postgres
+    container_name: postgresql
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    networks:
+      - mynet
+    ports:
+      - 5432:5432
+    volumes:
+      - postgresql:/postgresql/data
+
+volumes:
+    postgresql:
+
+networks:
+  mynet:
+    driver: bridge

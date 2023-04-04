@@ -1,0 +1,9 @@
+port: "8000"
+
+db:
+  Host: "localhost"
+  Port: "5432"
+  POSTGRRES_USER: "postgres"
+  POSTGRES_PASSWORD: "Merei04977773@"
+  POSTGRES_DB: "bookStore"
+  SSLMode: "disable"
